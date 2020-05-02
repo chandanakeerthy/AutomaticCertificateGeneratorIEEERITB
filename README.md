@@ -6,7 +6,7 @@
 ### Developments Required.
 
   1. We aim to expect a fully functioning web app, that exposes the above script as an API using flask/Django.
-  2. Basically,the contributor, has to develop a working GUI that takes inputs like certificate template, Font_Size,CSV_file etc. as form inputs.
+  2. Basically,the contributor, has to develop a working GUI that takes inputs like certificate template, Font_Size,CSV_file etc. as form inputs in a web app.
   
 ### What is there in store for you ?
   
