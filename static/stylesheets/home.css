@@ -5,6 +5,8 @@
     box-sizing: border-box;
 }
 
+
+
 #head-img{
     background: url('../images/ieee-banner.jpg') no-repeat;
     background-size: cover;
@@ -16,10 +18,10 @@
 
 
 .my_form{
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    display: flex;
+    margin-top: 1rem;
+    left: 30%;
+    position:relative;
     width: max-content;
     height: max-content;
     opacity: 2;
@@ -38,6 +40,11 @@
  #template:hover, #csv:hover{
      background-color: green;
  }
+
+ #template:active, #csv:active{
+   background-color:red;
+ }
+
   
 
   @media screen and (max-width:980px)

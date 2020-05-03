@@ -9,8 +9,7 @@ app.secret_key = '#$&&*()282987653ngy$$^&*$hkhgf#(*&^098765'
 
 @app.route('/', methods = ['GET','POST'])
 @app.route('/certificate', methods = ['GET', 'POST'])
-def certificatepage():
-
+def certificatepage();
     return render_template('home.html')
 
 
