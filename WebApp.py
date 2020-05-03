@@ -52,7 +52,7 @@ def perform():
             path = r"./certificates/"        #path to save the certificates
             cv2.imwrite(os.path.join(path , text+".jpg"), img1 )
 
-    return render_template('home.html',context="")
+    return render_template('home.html')
 
 
 if __name__ == "__main__":
