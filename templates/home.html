@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Certificate Genreator</title>
+
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/home.css') }}">
+	<script type="text/javascript">
+		
+    </script>
+    
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename = 'images/favicon.ico')}}"/>
+
+	 <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/bd81c4ab1e.js" crossorigin="anonymous"></script>
+
+
+    <!--meta tags-->
+    <meta name="viewport " content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body >
+     <div id="head-img">
+
+     </div>
+     <br>
+        <div class="my_form" >
+            <form method="POST" action="/perform" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="template">Certificate Template</label>
+                  <input name="template" type="file" class="form-control" id="template" aria-describedby="emailHelp">
+                  <small id="error-msg" style="color: wheat;">{{ msg }}</small>
+                </div>
+                <div class="form-group">
+                  <label for="fontsize">Font Size In Pixel</label>
+                  <input  name="fontsize" autocomplete="off" type="number" value="2" minlength="12" class="form-control" id="fontsize">
+                </div>
+                <div class="form-group">
+                    <label for="csv">Names Text File</label>
+                    <input name="csv" type="file" class="form-control" id="csv" aria-describedby="emailHelp">
+                    <small id="error-msg" style="color: wheat;">{{ msg }}</small>
+                  </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+              
+        </div>
+     <br>
+    
+     <footer style="height: 5rem;">
+
+     </footer>
+</body>
+</html>
