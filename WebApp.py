@@ -1,8 +1,6 @@
 from flask import Flask , redirect, render_template, url_for, request
 import cv2
 import os
-from PIL import Image
-import glob
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -39,7 +37,7 @@ def perform():
         for name in names:                    
             text = name.upper()            
             img = cv2.imread(f'./downloadFolder/{template_file}')
-            
+
             cert_len = img.shape[1]
             cert_mid=cert_len//2
             txtsize = cv2.getTextSize(text, font,  fontScale, thickness)
