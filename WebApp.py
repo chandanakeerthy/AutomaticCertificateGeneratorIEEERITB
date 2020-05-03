@@ -13,6 +13,17 @@ def certificatepage():
     return render_template('home.html')
 
 
+@app.route('/perform', methods = ['GET','POST'])
+def perform():
+    if request.method == 'POST':
+        template = request.form['template']
+        font_size = request.form['fontsize']
+        csv_file = request.form['csv']
+        
+
+    return render_template('home.html', content = values)
+
+
 if __name__ == "__main__":
     app.run()
     
