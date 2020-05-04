@@ -1,6 +1,9 @@
-from flask import Flask , redirect, render_template, url_for, request
+from flask import Flask , redirect, render_template, url_for, request, flash, send_file
 import cv2
 import os
+
+# to zip the directory
+import shutil
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -50,9 +53,13 @@ def perform():
             org=(cert_mid-mid,450)
             img1 = cv2.putText(img, text, org, font,  fontScale, color, thickness, cv2.LINE_AA)
             path = r"./certificates/"        #path to save the certificates
-            cv2.imwrite(os.path.join(path , text+".jpg"), img1 )
+            cv2.imwrite(os.path.join(path , text+".png"), img1 )
+            # compressing to zip to upload
+            shutil.make_archive('./static/certificates', 'zip', './certificates')
+            print('made archive')
 
-    return render_template('home.html')
+        return render_template('home.html', c = 'certificates.zip') # returning cerificates in zip to download
+    return render_template('home.html', certificates = '')
 
 
 if __name__ == "__main__":
