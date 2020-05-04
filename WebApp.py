@@ -7,7 +7,7 @@ import shutil
 
 app = Flask(__name__)
 app.static_folder = 'static'
-app.debug = True
+app.debug = False
 app.secret_key = '#$&&*()282987653ngy$$^&*$hkhgf#(*&^098765'
 
 
