@@ -46,28 +46,28 @@ def perform():
             thickness = 5
             names = open(f'/tmp/{name_file_name}') # names uploaded 
             for name in names:                    
-                text = name.upper()            
+                text = name. upper()            
                 img = cv2.imread(f'/tmp/{template_file_name}')
+
                 cert_len = img.shape[1]
-                cert_mid=cert_len//2
+                cert_mid = cert_len//2
                 txtsize = cv2.getTextSize(text, font,  fontScale, thickness)
-                txt_len=txtsize[0][0]
+                txt_len = txtsize[0][0]
                 if(txt_len%2 == 0):
                     mid=txt_len//2
                 else:
-                    mid=(txt_len+1)//2
+                    mid=(txt_len//2)+1
 
-                org=(cert_mid-mid,450)
+                org=(cert_mid - mid,325)
+
                 img1 = cv2.putText(img, text, org, font,  fontScale, color, thickness, cv2.LINE_AA)
                 path = r"/tmp/"        #path to save the certificates
                 cv2.imwrite(os.path.join(path , text+".png"), img1 )
-
                 # compressing to zip to upload
                 shutil.make_archive('./static/certificates', 'zip', '/tmp')
-
             return render_template('home.html', c = 'certificates.zip', con = 'block') # returning cerificates in zip to download
-        except:
-            return redirect(request.url)
+        except Exception as e:
+            print(e)
     return render_template('home.html', certificates = '', con = 'none')
 
 
