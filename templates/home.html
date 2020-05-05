@@ -45,14 +45,24 @@
             
           }
           else{
-            document.getElementById('m-form').action = '/perform';
+            var expression = /(^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$)/i ;
+            var color_code = document.getElementById('fontcolor').value;
+            console.log(typeof(color_code))
+            console.log(expression.test(color_code));
+            if(expression.test(color_code) == false)
+            {
+              $("#error-msg3").html("Invalid color code");
+              document.getElementById('m-form').action = 'javascript:void(0)';
+            }
+            else
+            {
+             document.getElementById('m-form').action = '/perform';
 
+            }
           }
 
         }
        
-       
-
     </script>
     
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename = 'images/favicon.ico')}}"/>
@@ -84,8 +94,12 @@
                   <small id="error-msg1" style="color: wheat;">{{ msg }}</small>
                 </div>
                 <div class="form-group">
-                  <label for="fontsize">Font Size In Pixel</label>
+                  <label for="fontsize">Font Scale</label>
                   <input  name="fontsize" autocomplete="off" type="number" value="2" minlength="12" class="form-control" id="fontsize">
+                  <br>
+                  <label for="fontcolor">Font Color</label>
+                  <input  name="fontcolor" autocomplete="off" type="text" placeholder="Paste your desired hexadecimal color code"  class="form-control" id="fontcolor">
+                  <small id="error-msg3" style="color: wheat;">{{ msg }}</small>
                 </div>
                 <div class="form-group">
                     <label for="csv">Names Text File</label>

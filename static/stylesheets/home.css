@@ -53,7 +53,9 @@
   @media screen and (max-width:980px)
   {
     .my_form{
-      background-color: rebeccapurple;
-      padding: 5rem 2.5rem 6rem;
+      background-color: rgb(45, 14, 77);
+      padding: 2rem 1.5rem 2rem 1.5;
+      font-size: 15px;
+      margin-left: -10rem;
     }
   }
