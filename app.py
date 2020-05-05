@@ -37,7 +37,7 @@ def perform():
             name_file = request.files['csv']
             name_file_name = secure_filename(name_file.filename)
             name_file.save(os.path.join(temdir, name_file_name))
-            print(os.path.abspath(name_file_name))
+            
 
 
             font = cv2.FONT_HERSHEY_COMPLEX
