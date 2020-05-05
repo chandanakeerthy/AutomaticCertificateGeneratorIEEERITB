@@ -38,11 +38,17 @@ def perform():
             name_file_name = secure_filename(name_file.filename)
             name_file.save(os.path.join(temdir, name_file_name))
             
+            # font color conversion to rgb format for cv2 processing
+            color_code_hex = request.form['fontcolor']
+            value = color_code_hex.lstrip('#')
+            lv = len(value)
+            color_code_rgb = tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+            
 
 
             font = cv2.FONT_HERSHEY_COMPLEX
             fontScale = int(font_size)                 
-            color = (171, 122, 9)               
+            color = color_code_rgb              
             thickness = 5
             names = open(f'/tmp/{name_file_name}') # names uploaded 
             for name in names:                    
