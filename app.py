@@ -24,12 +24,14 @@ def perform():
     if request.method == 'POST':
         template = request.files['template']
         template.save(f'./static/downloadFolder/{template.filename}')
+        template.close()
         template_file = template.filename
 
         font_size = request.form['fontsize']
 
         name_file = request.files['csv']
         name_file.save(f'./static/downloadFolder/{name_file.filename}')
+        name_file.close()
         name_file = name_file.filename
 
         font = cv2.FONT_HERSHEY_COMPLEX
