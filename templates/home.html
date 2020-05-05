@@ -6,7 +6,51 @@
 
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/home.css') }}">
 	<script type="text/javascript">
-		
+        function check()
+        {
+          var x = document.getElementById('template');
+          var y = document.getElementById('csv');
+          var x_val = x.value.split(".")[1];
+          var y_val = y.value.split(".")[1];
+          if(x.value == '' || y.value == '')
+          {
+            document.getElementById('error-msg1').innerHTML = 'File not Uploaded';
+            document.getElementById('error-msg2').innerHTML = 'File not Uploaded';
+            document.getElementById('m-form').action = 'javascript:void(0)';
+          }
+         
+          else if(x.value == '' && y.value != '')
+          {
+            document.getElementById('error-msg1').innerHTML = 'File not Uploaded';
+            document.getElementById('m-form').action = 'javascript:void(0)';
+          }
+          else if(y.value == '' && x.value != '')
+          {
+            document.getElementById('error-msg2').innerHTML = 'File not Uploaded';
+            document.getElementById('m-form').action = 'javascript:void(0)';
+          }
+          else if(x_val != 'jpg' && x_val != 'png')
+          {
+            document.getElementById('error-msg1').innerHTML = 'Invalid file Format';
+            document.getElementById('m-form').action = 'javascript:void(0)';
+            
+          }
+          
+          else if(y_val != 'txt')
+          {
+            document.getElementById('error-msg2').innerHTML = 'Invalid file Format';
+            document.getElementById('m-form').action = 'javascript:void(0)';
+            
+          }
+          else{
+            document.getElementById('m-form').action = '/perform';
+
+          }
+
+        }
+       
+       
+
     </script>
     
 	<link rel="icon" type="image/png" href="{{ url_for('static', filename = 'images/favicon.ico')}}"/>
@@ -25,17 +69,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
-<body >
+<body onload="setfun()" >
      <div id="head-img">
 
      </div>
      <br>
         <div class="my_form" >
-            <form method="POST" action="/perform" enctype="multipart/form-data">
+            <form id="m-form" method="POST" onsubmit="check()" action='' enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="template">Certificate Template</label>
-                  <input name="template" type="file" class="form-control" id="template" aria-describedby="emailHelp">
-                  <small id="error-msg" style="color: wheat;">{{ msg }}</small>
+                  <input name="template" type="file" class="form-control" id="template" aria-describedby="error-msg1">
+                  <small id="error-msg1" style="color: wheat;">{{ msg }}</small>
                 </div>
                 <div class="form-group">
                   <label for="fontsize">Font Size In Pixel</label>
@@ -43,13 +87,13 @@
                 </div>
                 <div class="form-group">
                     <label for="csv">Names Text File</label>
-                    <input name="csv" type="file" class="form-control" id="csv" aria-describedby="emailHelp">
-                    <small id="error-msg" style="color: wheat;">{{ msg }}</small>
+                    <input name="csv" type="file" class="form-control" id="csv" aria-describedby="error-msg2">
+                    <small id="error-msg2" style="color: wheat;">{{ msg }}</small>
                   </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <br>
                 <br>
-                <a href= /static/{{c}} class="btn btn-primary btn-lg active" role="button" aria-pressed="true" download>Download</a>
+                <a id="down-btn" href= "/static/{{c}}" style="display: {{ con }};" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" download>Download</a>
               </form>
         </div>
      <br>
