@@ -56,7 +56,6 @@ def perform():
             cv2.imwrite(os.path.join(path , text+".png"), img1 )
             # compressing to zip to upload
             shutil.make_archive('./static/certificates', 'zip', './certificates')
-            print('made archive')
 
         return render_template('home.html', c = 'certificates.zip') # returning cerificates in zip to download
     return render_template('home.html', certificates = '')
