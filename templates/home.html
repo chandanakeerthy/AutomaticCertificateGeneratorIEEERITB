@@ -10,8 +10,10 @@
         {
           var x = document.getElementById('template');
           var y = document.getElementById('csv');
-          var x_val = x.value.split(".")[1];
-          var y_val = y.value.split(".")[1];
+          a = x.value.length;
+          b = y.value.length;
+          var x_val = x.value.substring(a-3);
+          var y_val = y.value.substring(b-3);
           if(x.value == '' || y.value == '')
           {
             document.getElementById('error-msg1').innerHTML = 'File not Uploaded';
