@@ -62,10 +62,25 @@
           }
 
         }
+
+    // header image autochange
+    var imgs = ['../static/images/ieee-banner.jpg', 
+                '../static/images/ieee2.jpg', 
+                '../static/images/ieee3.jpeg',
+                '../static/images/ieee4.jpg'];
+        var index = 0;
+        setInterval(function(){
+            if(index == imgs.length)
+            {
+                index = 0;
+            }
+            document.getElementById('head-img').src = imgs[index];
+            index++;
+        },3000);
        
     </script>
     
-	<link rel="icon" type="image/png" href="{{ url_for('static', filename = 'images/favicon.ico')}}"/>
+	<link rel="icon"  type="image/x-icon" href="{{ url_for('static', filename = 'images/favicon.png')}}" sizes="32x32"/>
 
 	 <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -81,9 +96,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
-<body onload="setfun()" >
-     <div id="head-img">
-
+<body>
+     <div class="bl1">
+      <img id="head-img" src="../static/images/ieee-banner.jpg"> 
      </div>
      <br>
         <div class="my_form" >
