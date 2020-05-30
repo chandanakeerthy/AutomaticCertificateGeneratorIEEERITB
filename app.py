@@ -59,7 +59,7 @@ def perform():
                 namesList = [name[:-1] for name in names]
             elif fileFormat == 'csv':
                 import pandas as pd 
-                df = pd.read_csv(name_file_name)
+                df = pd.read_csv(f'/tmp/{name_file_name}')
                 namesList = df['Name'] # set the default value for name column in csv file
             else:
                 raise Exception(f'Names file format not supported: {fileFormat}')
