@@ -51,8 +51,20 @@ def perform():
             fontScale = int(font_size)                 
             color = color_code_bgr            
             thickness = 5
-            names = open(f'/tmp/{name_file_name}') # names uploaded 
-            for name in names:                    
+
+            # form namesList on file type of names file
+            fileFormat = name_file_name.split('.')[-1] # get the .format
+            if fileFormat == 'txt':
+                names = open(f'/tmp/{name_file_name}') # names uploaded
+                namesList = [name[:-1] for name in names]
+            elif fileFormat == 'csv':
+                import pandas as pd 
+                df = pd.read_csv(name_file_name)
+                namesList = df['Name'] # set the default value for name column in csv file
+            else:
+                raise Exception(f'Names file format not supported: {fileFormat}')
+
+            for name in namesList:                    
                 text = name. upper()            
                 img = cv2.imread(f'/tmp/{template_file_name}')
 
@@ -65,7 +77,7 @@ def perform():
                 else:
                     mid=(txt_len//2)+1
 
-                org=(cert_mid - mid,325)
+                org=(cert_mid - mid,640)
 
                 img1 = cv2.putText(img, text, org, font,  fontScale, color, thickness, cv2.LINE_AA)
                 path = r"/tmp/"        #path to save the certificates
