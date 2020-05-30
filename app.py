@@ -38,20 +38,33 @@ def perform():
             name_file_name = secure_filename(name_file.filename)
             name_file.save(os.path.join(temdir, name_file_name))
             
-            # font color conversion to rgb format for cv2 processing
+            # font color conversion to rgb format
             color_code_hex = request.form['fontcolor']
             value = color_code_hex.lstrip('#')
             lv = len(value)
             color_code_rgb = tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
-            
 
+            # converion from rgb to bgr for cv2 processing
+            color_code_bgr = color_code_rgb[::-1]
 
             font = cv2.FONT_HERSHEY_COMPLEX
             fontScale = int(font_size)                 
-            color = color_code_rgb              
+            color = color_code_bgr            
             thickness = 5
-            names = open(f'/tmp/{name_file_name}') # names uploaded 
-            for name in names:                    
+
+            # form namesList on file type of names file
+            fileFormat = name_file_name.split('.')[-1] # get the .format
+            if fileFormat == 'txt':
+                names = open(f'/tmp/{name_file_name}') # names uploaded
+                namesList = [name[:-1] for name in names]
+            elif fileFormat == 'csv':
+                import pandas as pd 
+                df = pd.read_csv(f'/tmp/{name_file_name}')
+                namesList = df['Name'] # set the default value for name column in csv file
+            else:
+                raise Exception(f'Names file format not supported: {fileFormat}')
+
+            for name in namesList:                    
                 text = name. upper()            
                 img = cv2.imread(f'/tmp/{template_file_name}')
 
@@ -64,7 +77,7 @@ def perform():
                 else:
                     mid=(txt_len//2)+1
 
-                org=(cert_mid - mid,325)
+                org=(cert_mid - mid,640)
 
                 img1 = cv2.putText(img, text, org, font,  fontScale, color, thickness, cv2.LINE_AA)
                 path = r"/tmp/"        #path to save the certificates
