@@ -77,7 +77,7 @@ def perform():
                 else:
                     mid=(txt_len//2)+1
 
-                org=(cert_mid - mid,640)
+                org=(cert_mid - mid,560)
 
                 img1 = cv2.putText(img, text, org, font,  fontScale, color, thickness, cv2.LINE_AA)
                 path = r"/tmp/"        #path to save the certificates
